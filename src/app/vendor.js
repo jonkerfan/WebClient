@@ -7,6 +7,7 @@ import 'autofill-event/src/autofill-event';
 
 import 'angular/angular';
 import 'angular-cookies/angular-cookies';
+import 'angular-aria/angular-aria';
 import 'angular-ui-router/release/angular-ui-router';
 import 'angular-sanitize/angular-sanitize';
 import 'angular-notify/dist/angular-notify';
