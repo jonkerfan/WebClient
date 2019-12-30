@@ -214,7 +214,7 @@
     "node": ">=12.0.0"
   },
   "version": "3.16.21",
-  "version-beta": "4.0.0-beta5",
+  "version-beta": "4.0.0-beta6",
   "husky": {
     "hooks": {
       "pre-commit": "npm run unfollow:lock && ./tasks/metrics.sh"
