@@ -1,21 +1,21 @@
 <div class="encryptionStatus-container">
     <a
-        class="nodecoration color-global-grey no-pointer-events-children flex"
+        class="nodecoration color-global-grey no-pointer-events-children ml0-25"
         href="https://protonmail.com/support/knowledge-base/what-is-encrypted/"
         target="_blank"
         ng-if="!displaySignatureStatus() && !message.isPGPEncrypted()"
         ng-class="{
             'color-pm-blue': message.isInternal() || message.isSentEncrypted() || message.isDraft() || message.isAuto(),
         }">
-        <icon data-name="lock" data-fill="currentColor" class="mauto flex-self-vcenter"></icon>
+        <icon data-name="lock" data-fill="currentColor" class="mauto flex-self-vcenter alignbaseline"></icon>
     </a>
 
     <a
-        class="nodecoration color-global-grey no-pointer-events-children flex"
+        class="nodecoration color-global-grey no-pointer-events-children ml0-25"
         href="https://protonmail.com/support/knowledge-base/how-to-use-pgp"
         target="_blank"
         ng-if="!displaySignatureStatus() && message.isPGPEncrypted()">
-        <icon data-name="lock" data-fill="currentColor" class="mauto flex-self-vcenter"></icon>
+        <icon data-name="lock" data-fill="currentColor" class="mauto flex-self-vcenter alignbaseline"></icon>
     </a>
 
     <a
@@ -23,24 +23,15 @@
         target="_blank"
         class=" no-pointer-events-children"
         ng-if="displaySignatureStatus()">
-        <svg
-            class="signed-lock flex-self-vcenter"
-            width="18"
-            viewBox="0 0 374.8 337.1"
+        <span class="signed-lock flex-self-vcenter"
             ng-class="{
                 'valid-sig': message.verified === 1,
                 'invalid-sig': message.verified !== 1,
                 'internal': message.isInternal() || message.isSentEncrypted() || message.isDraft() || message.isAuto(),
                 'pgp': message.isPGPEncrypted(),
-            }">
-            <use
-                ng-if="message.verified === 1"
-                xmlns:xlink="http://www.w3.org/1999/xlink"
-                xlink:href="#svg-lock-signed"></use>
-            <use
-                ng-if="message.verified !== 1"
-                xmlns:xlink="http://www.w3.org/1999/xlink"
-                xlink:href="#svg-lock-warning"></use>
-        </svg>
+        }">
+            <icon data-name="lock-check" ng-if="message.verified === 1" data-fill="currentColor" class="mauto flex-self-vcenter alignbaseline"></icon>
+            <icon data-name="lock-warning" ng-if="message.verified !== 1" data-fill="currentColor" class="mauto flex-self-vcenter alignbaseline"></icon>
+        </span>
     </a>
 </div>

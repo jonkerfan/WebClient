@@ -17,29 +17,22 @@
             'pgp-encryption-icon': email.isPgp
         }"></icon>
 
-    <svg
-        width="18"
-        viewBox="0 0 374.8 337.1"
+    <icon
+        data-name="lock-check"
         ng-if="!email.loadCryptInfo && email.encrypt && email.isPinned && !email.isEO"
-        class="encryptionIcon mtauto mbauto ml0-25 mr0-25"
+        data-fill="currentColor"
+        class="encryptionIcon mt0-1 ml0-25 mr0-25"
         ng-class="{
             'pgp-encryption-icon': email.isPgp
-        }">
-        <use
-            xmlns:xlink="http://www.w3.org/1999/xlink"
-            xlink:href="#svg-lock-signed"></use>
-    </svg>
+        }"></icon>
 
-    <svg
-        width="18"
-        viewBox="0 0 374.8 337.1"
+    <icon
+        data-name="lock-warning"
         ng-if="!email.loadCryptInfo && !email.encrypt && email.sign"
-        class="encryptionIcon mtauto mbauto big-encryption-icon ml0-25 mr0-25"
+        data-fill="currentColor"
+        class="encryptionIcon mt0-1 big-encryption-icon ml0-25 mr0-25"
         ng-class="{
             'pgp-encryption-icon': email.isPgp
-        }">
-        <use
-            xmlns:xlink="http://www.w3.org/1999/xlink"
-            xlink:href="#svg-unlocked-signed"></use>
-    </svg>
+        }"></icon>
+
 </div>
