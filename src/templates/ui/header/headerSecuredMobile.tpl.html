@@ -1,12 +1,15 @@
 <div class="headerSecuredMobile-container flex flex-row w100">
-    <btn-display-mobile-sidebar class="headerSecuredMobile-toggleSidebar"></btn-display-mobile-sidebar>
-    <navigation-black-friday></navigation-black-friday>
-    <search-form></search-form>
-    <button
-        class="headerSecuredMobile-compose compose-fab pm-button--primary flex"
-        data-action-compose
-        data-action-compose-type="new">
-            <icon data-name="compose" data-size="25" fill="white" class="mauto"></icon>
-            <span class="sr-only" translate-context="Action" translate>Compose</span>
-    </button>
+    <ul class="topnav-list unstyled mt0 mb0 ml0-25 flex flex-items-center flex-nowrap w100">
+        <btn-display-mobile-sidebar class="headerSecuredMobile-toggleSidebar"></btn-display-mobile-sidebar>
+        <navigation-black-friday></navigation-black-friday>
+        <search-form></search-form>
+        <li><button
+            class="headerSecuredMobile-compose compose-fab pm-button--primary flex mlauto"
+            data-action-compose
+            data-action-compose-type="new">
+                <icon data-name="compose" data-size="25" fill="white" class="mauto"></icon>
+                <span class="sr-only" translate-context="Action" translate>Compose</span>
+        </button></li>
+        <navigation-user></navigation-user>
+    </ul>
 </div>
