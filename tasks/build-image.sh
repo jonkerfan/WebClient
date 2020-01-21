@@ -45,12 +45,16 @@ echo '=> Assuming repo is configured according to ./README.md#Config'
 echo "=> Bundling app..."
 subprojects_opts=''
 if [ ! -r '../proton-mail-settings/package.json' ]; then
-    echo '~> not bundling settings since no source found at ../proton-mail-settings'
-    subprojects_opts="${subprojects_opts} --no-settings"
+    echo '~> using --remote-setting as no local source found at ../proton-mail-settings'
+    subprojects_opts="${subprojects_opts} --remote-pm-settings"
 fi
 if [ ! -r '../proton-contacts/package.json' ]; then
-    echo '~> not bundling contacts since no source found at ../proton-contacts'
-    subprojects_opts="${subprojects_opts} --no-contacts"
+    echo '~> using --remote-contacts as no local source found at ../proton-contacts'
+    subprojects_opts="${subprojects_opts} --remote-contacts"
+fi
+if [ ! -r '../proton-calendar/package.json' ]; then
+    echo '~> using --remote-calendar as no local source found at ../proton-calendar'
+    subprojects_opts="${subprojects_opts} --remote-calendar"
 fi
 if [ "${NO_BUNDLE:-}" ]; then
     echo '~> skipped.'

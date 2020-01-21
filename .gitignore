@@ -33,3 +33,4 @@ env/i18n.txt
 coverage/
 .env
 appConfig.json
+/ci-scripts

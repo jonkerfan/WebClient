@@ -29,7 +29,6 @@ env.argv.debug && console.log(`${JSON.stringify(CONFIG, null, 2)}`);
 
 const generator = (() => {
     const fileNameChangelog = path.join('build', CONFIG.changelogPath);
-    const fileNameVersionInfo = path.join('build', CONFIG.versionPath);
     const changelog = () => {
         execa.shell(`tasks/generateChangelog.js ./CHANGELOG.md ${fileNameChangelog}`);
     };

@@ -231,7 +231,7 @@ function main(argv) {
                 {
                     title: `Build the calendar application ${suffixRemote('calendar')}`,
                     skip() {
-                        if (!argv.v4 || argv.calendar === false || !featureFlags.includes('calendar')) {
+                        if (!argv.v4 || argv.calendar === false) {
                             return 'Flag --no-calendar inside the command.';
                         }
                     },
