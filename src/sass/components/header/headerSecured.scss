@@ -17,7 +17,7 @@ body.appConfigBody-is-mobile .navigationBlackFriday {list-style: none}
 }
 
 .headerSecuredMobile-toggleSidebar {
-    margin-right: auto;
+    //margin-right: auto;
     font-size: 2em
 }
 
@@ -27,7 +27,7 @@ body.appConfigBody-is-mobile .navigationBlackFriday {list-style: none}
 
 .appConfigBody-is-mobile .dropDown-content--advancedSearch {
     width: 100vw;
-    right: -4.3em; // ( 2* .5em + setting icon size/padding + userdropdown + padding-right of container, etc. )
+    right: -4.1em; // ( 2* .5em + setting icon size/padding + userdropdown + padding-right of container, etc. )
     margin-top: .65em;
 
     &::before {

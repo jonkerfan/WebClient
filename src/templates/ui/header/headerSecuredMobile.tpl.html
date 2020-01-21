@@ -1,9 +1,23 @@
 <div class="headerSecuredMobile-container flex flex-row w100">
-    <ul class="topnav-list unstyled mt0 mb0 ml0-25 flex flex-items-center flex-nowrap w100">
-        <btn-display-mobile-sidebar class="headerSecuredMobile-toggleSidebar"></btn-display-mobile-sidebar>
+    <ul class="unstyled mt0 mb0 ml0-25 flex flex-items-center flex-nowrap w100">
+        <li class="flex-item-noshrink">
+            <btn-display-mobile-sidebar class="headerSecuredMobile-toggleSidebar"></btn-display-mobile-sidebar>
+        </li class="flex-item-noshrink">
+        <li class="mrauto flex">
+            <view-title></view-title>
+        </li>
         <navigation-black-friday></navigation-black-friday>
+        <li class="flex-item-noshrink">
+            <a
+                href="/settings"
+                id="tour-settings"
+                class="topnav-link inline-flex flex-nowrap nodecoration">
+                <icon data-name="settings-master" class="topnav-icon flex-item-centered-vert"></icon>
+                <span class="sr-only" translate translate-context="Action">Settings</span>
+            </a>
+        </li>
         <search-form></search-form>
-        <li><button
+        <li class="flex-item-noshrink"><button
             class="headerSecuredMobile-compose compose-fab pm-button--primary flex mlauto"
             data-action-compose
             data-action-compose-type="new">

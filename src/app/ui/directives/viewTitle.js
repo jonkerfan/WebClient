@@ -4,7 +4,7 @@ function viewTitle(dispatchers, pageTitlesModel, $state) {
         scope: {},
         replace: true,
         restrict: 'E',
-        template: '<span class="viewTitle-container"></span>',
+        template: '<span class="viewTitle-container h3 mb0 ellipsis lh-standard"></span>',
         link(scope, el) {
             const { on, unsubscribe } = dispatchers();
             const identity = (a) => a;
