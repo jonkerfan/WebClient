@@ -176,7 +176,6 @@ function main(argv) {
             customConfigSetup: [
                 {
                     title: 'Setup config custom',
-                    enabled: () => !isCI,
                     async task(ctx) {
                         await bash('./tasks/setupConfig.js ', process.argv.slice(2));
                         ctx.config = env.getConfig('dist');

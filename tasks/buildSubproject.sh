@@ -1,10 +1,12 @@
 #!/usr/bin/env bash
 set -eo pipefail
 
+IS_REMOTE=false;
 LOG_PATH="$(pwd)/build.log";
 MAIN_ARGS=$@;
 
 function log {
+    echo "$1" >&2;
     echo "$1" >> "$LOG_PATH";
 }
 
@@ -33,10 +35,10 @@ if [ -z "$ROOT_DIR" ]; then
     echo "Missing [ROOT_DIR] inside env/.env file, to create one plz open the link below";
     echo "You will find inside an ex of the config."
     echo "https://github.com/ProtonMail/protonmail-settings#where-should-i-should-i-clone-them-"
+    echo '  - You can debug via using export ROOT_DIR="$(pwd)"'
     echo
     exit 1;
 fi;
-
 
 WEBCLIENT_DIR="$ROOT_DIR/${WEBCLIENT_APP:-Angular}";
 
@@ -54,11 +56,13 @@ CALENDAR_DIST_DIR="dist/calendar";
 ARGS="$*";
 
 
-log "[sub.build] $(date)"
-log "[sub.build] MAIN_ARGS: $MAIN_ARGS"
-log "[sub.build] api:$API"
-log "[init.project] $API_FLAG"
+log "[sub.build] $(date) MAIN_ARGS: $MAIN_ARGS"
+log "[sub.build] api:$API, API_FLAG was $API_FLAG"
 log "[init.project] remote $ARGS"
+log "[init.project] path webclient $WEBCLIENT_DIR";
+log "[init.project] current path $(pwd)";
+
+ls -lh
 
 function getRemote {
 
@@ -71,7 +75,7 @@ function getRemote {
         return 0;
     fi;
 
-    log "[clone] from git@github.com:ProtonMail/$1.git"
+    log "[clone] from git@github.com:ProtonMail/$1.git $(pwd)/$1"
     git clone --depth 1 "git@github.com:ProtonMail/$1.git";
 }
 
@@ -81,34 +85,39 @@ function loadProject {
         git clone --depth 1 "$APP_CONFIG_REPOSITORY" /tmp/app-config
     fi;
 
+    # Check if we need to clone the app because of a remote install
     if [[ "$ARGS" =~ "$1" ]]; then
-        log "[load.project] remote $2"
+        IS_REMOTE=true;
+
+        log "[load.project] from remote $2"
         getRemote "$2";
         cd "/tmp/$2";
 
         log "[config.project] load from /tmp/$2"
         /tmp/app-config/install "/tmp/$2" --verbose
         log "[config.project] loaded"
-        cat "/tmp/$2/appConfig.json"
-    else
-        log "[load.project] local $2"
-        cd "$ROOT_DIR/$2";
+        return 0;
     fi
+
+    log "[load.project] local $2"
+    cd "$ROOT_DIR/$2";
 }
 
+##
+# Install and build a subproject then copy its bundle to our main app
+# Angular. Inside the dist/directory.
+# If
 function addSubProject {
 
+    # If you deploy from local, we keep your cache
     if [ ! -d "./node_modules/react" ]; then
-        # if [[ -f "./package-lock.json" ]]; then
-        #     npm --no-color ci;
-        # else
-            npm --no-color i --no-audit --no-package-lock --silent;
-        # fi;
+        npm --no-color i --no-audit --no-package-lock --silent;
     fi
 
-    log "[build.project] npm run build -- $MAIN_ARGS --verbose"
-    rm -rf dist;
-    npm --no-color run build -- $MAIN_ARGS --verbose
+    log "[build.project] npm run bundle -- $MAIN_ARGS --verbose"
+    npm --no-color run bundle -- $MAIN_ARGS --no-lint --verbose
+
+    log "[build.project] Copy from $(pwd)/dist/ to $WEBCLIENT_DIR/$1";
     cp -r dist/ "$WEBCLIENT_DIR/$1";
 }
 

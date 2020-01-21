@@ -194,8 +194,8 @@
     "check-types": "echo 123",
     "i18n:validate": "echo 123",
     "i18n:validate:context": "proton-i18n extract && npm run i18n:check -- --debug",
-    "bundle": "cross-env NODE_ENV_DIST=bundle-only NODE_ENV=dist proton-bundler --v4 --remote-pm-settings --remote-calendar --remote-contacts",
-    "bundle:no-subprojects": "npm run bundle -- --no-settings --no-contacts",
+    "bundle": "cross-env NODE_ENV_DIST=bundle-only NODE_ENV=dist proton-bundler --v4",
+    "bundle:no-subprojects": "npm run bundle -- --no-settings --no-contacts --no-calendar",
     "bundle:remote": "npm run bundle -- --remote-pm-settings --remote-contacts --remote-calendar",
     "deploy:v4": "npm run deploy -- --v4 --branch=deploy-v4 --remote-pm-settings --remote-calendar --remote-contacts"
   },
