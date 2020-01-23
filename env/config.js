@@ -25,6 +25,19 @@ const getSingleArgument = (argument) => {
 
 const ARG_BRANCH = getSingleArgument(argv.branch) || '';
 
+const { API_ARG, API_URL_ARG, API_SECURE_ARG } = (() => {
+    const apiKeys = (argv.api || '').split('+');
+
+    const apiUrl = apiKeys.reduce((url, key) => (API_TARGETS[key] ? key : url), 'prod');
+    const secureUrl = apiKeys.reduce((url, key) => (SECURED_IFRAME[key] ? key : url), 'prod');
+
+    return {
+        API_ARG: apiKeys[0],
+        API_URL_ARG: apiUrl,
+        API_SECURE_ARG: secureUrl
+    };
+})();
+
 const isWebClient = () => {
     try {
         const origin = execSync('git remote get-url origin');
@@ -90,7 +103,7 @@ const getDefaultApiTarget = (defaultType = 'dev') => {
 };
 
 const isDistRelease = () => {
-    return ['prod', 'beta'].includes(argv.api) || process.env.NODE_ENV === 'dist';
+    return ['prod', 'beta'].includes(API_ARG) || process.env.NODE_ENV === 'dist';
 };
 
 const getFeatureFlags = () => {
@@ -99,9 +112,9 @@ const getFeatureFlags = () => {
 
 const getEnv = () => {
     if (isDistRelease()) {
-        return argv.api || getDefaultApiTarget();
+        return API_ARG || getDefaultApiTarget();
     }
-    return argv.api || 'local';
+    return API_ARG || 'local';
 };
 
 const apiUrl = (type = getDefaultApiTarget(), branch = '') => {
@@ -159,8 +172,8 @@ const getHostURL = (encoded) => {
 const getEnvDeploy = ({ env = process.env.NODE_ENV, config = true } = {}) => {
     const opt = {
         debug: env === 'dist' ? false : 'debug-app' in argv ? argv['debug-app'] : true,
-        securedIframe: SECURED_IFRAME[argv.api],
-        apiUrl: apiUrl(argv.api, ARG_BRANCH),
+        securedIframe: SECURED_IFRAME[API_SECURE_ARG],
+        apiUrl: apiUrl(API_URL_ARG, ARG_BRANCH),
         app_version: argv['app-version'] || CONFIG_DEFAULT.app_version,
         api_version: `${argv['api-version'] || CONFIG_DEFAULT.api_version}`,
         articleLink: argv.article || CONFIG_DEFAULT.articleLink,
