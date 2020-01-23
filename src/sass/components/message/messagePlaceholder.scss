@@ -13,7 +13,7 @@
 .appConfigBody-is-mobile .messagePlaceholder { min-height: 80vh }
 
 [id="secured-search"] [id="conversation-list-rows"],
-[id="secured-search"] [id="conversation-list-columns"] { background: $pm-global-light }
+[id="secured-search"] [id="conversation-list-columns"] { background: var(--bgcolor-view-column-detail, $pm-global-light); }
 
 
 [id="secured-search"] .messagePlaceholder [data-if]:not([data-if="search"]),

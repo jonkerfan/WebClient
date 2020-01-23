@@ -8,7 +8,11 @@
 
         <img
             ng-src="/assets/selected-label-{{selectedLabelTotalRaw > 1 ? 'many' : 'single'}}.svg"
-            class="countElementsSelected-image"
+            class="countElementsSelected-image hide-on-darkmode"
+            alt="Email selected">
+        <img
+            ng-src="/assets/selected-label-{{selectedLabelTotalRaw > 1 ? 'many' : 'single'}}-dark.svg"
+            class="countElementsSelected-image display-on-darkmode"
             alt="Email selected">
     </div>
 

@@ -147,6 +147,11 @@ const customTheme = (AppModel, dispatchers, mailSettingsModel, organizationModel
                .fill-black {
                  fill: #fff; }
 
+               .appConfigBody-darkmode .display-on-darkmode {
+                  display: flex; }
+                .appConfigBody-darkmode .hide-on-darkmode {
+                    display: none; }
+
                :root {
                  --bgcolor-item-column-list: #262a33;
                  --bgcolor-view-column-detail: #2e323d;
