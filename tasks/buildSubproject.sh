@@ -117,6 +117,8 @@ function addSubProject {
     log "[build.project] npm run bundle -- $MAIN_ARGS --verbose"
     npm --no-color run bundle -- $MAIN_ARGS --no-lint --verbose
 
+    log "[build.project] Remove .htaccess to prevent directory listing";
+    rm -rf dist/.htaccess; || echo
     log "[build.project] Copy from $(pwd)/dist/ to $WEBCLIENT_DIR/$1";
     cp -r dist/ "$WEBCLIENT_DIR/$1";
 }
