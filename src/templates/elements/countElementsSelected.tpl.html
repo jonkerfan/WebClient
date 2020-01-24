@@ -32,7 +32,11 @@
 
         <img
             ng-src="/assets/selected-conversation-{{numberElementChecked > 1 ? 'many' : 'single'}}.svg"
-            class="countElementsSelected-image"
+            class="countElementsSelected-image hide-on-darkmode"
+            alt="Conversation selected">
+        <img
+            ng-src="/assets/selected-conversation-{{numberElementChecked > 1 ? 'many' : 'single'}}-dark.svg"
+            class="countElementsSelected-image display-on-darkmode"
             alt="Conversation selected">
 
         <div>
