@@ -38,8 +38,8 @@
 // this fix is Angular only
 .selectBoxElement-container:hover {
     .item-icon {
-        background-color: $white;
-        border-color: $pm-global-border;
+        background-color: var(--bgcolor-input, $white);
+        border-color: var(--bordercolor-input, $pm-global-border);
         & > .item-abbr {
           display: none;
         }
