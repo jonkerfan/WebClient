@@ -10,11 +10,6 @@ GIT_HEAD_DESC="$(git describe --long --dirty --all)"
 
 [ "${CI_JOB_TOKEN:-}" ] && docker login -u gitlab-ci-token -p "$CI_JOB_TOKEN" "$CI_REGISTRY"
 
-if [ "${GCR_CREDENTIALS_JSON:-}" ]; then
-    echo '=> logging in to gcr.io'
-    echo "${GCR_CREDENTIALS_JSON}" | docker login -u _json_key --password-stdin gcr.io
-fi
-
 if [ ! "${CI:-}" ]; then
     COMMIT_TAG='local'
 fi
