@@ -65,7 +65,7 @@ function sidebarModel(tools, cacheCounters, gettextCatalog, dynamicStates, conta
     const getRawTotal = (mailbox) => {
         const type = tools.getTypeList(mailbox);
         const key = type === 'conversation' ? 'Conversation' : 'Message';
-        return cacheCounters[`total${key}`](getFolderID(mailbox));
+        return cacheCounters[`total${key}`](getFolderID(mailbox)) || 0;
     };
 
     const renameMailbox = (mailbox) => {
