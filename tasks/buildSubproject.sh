@@ -53,6 +53,7 @@ API="${API_FLAG:-build}";
 SETTINGS_DIST_DIR="dist/settings";
 CONTACTS_DIST_DIR="dist/contacts";
 CALENDAR_DIST_DIR="dist/calendar";
+GIT_SUBPROJECT_URL="";
 ARGS="$*";
 
 
@@ -64,19 +65,28 @@ log "[init.project] current path $(pwd)";
 
 ls -lh
 
-function getRemote {
-
-    cd /tmp;
-    rm -rf "/tmp/$1" || echo true;
-
-    if [[ "$1" =~ calendar ]]; then
-        log "[clone] from $CALENDAR_GIT"
-        git clone --depth 1 "$CALENDAR_GIT";
-        return 0;
+function checkEnv {
+    if [ "$1" = 'pm-settings' ] &&  [ -z "$PM_SETTINGS_GIT" ]; then
+        echo '[env] Missing variable PM_SETTINGS_GIT inside your env';
+        exit 1;
     fi;
 
-    log "[clone] from git@github.com:ProtonMail/$1.git $(pwd)/$1"
-    git clone --depth 1 "git@github.com:ProtonMail/$1.git";
+    if [ "$1" = 'contacts' ] &&  [ -z "$CONTACTS_GIT" ]; then
+        echo '[env] Missing variable CONTACTS_GIT inside your env'
+        exit 1;
+    fi;
+
+    if [ "$1" = 'calendar' ] &&  [ -z "$CALENDAR_GIT" ]; then
+        echo '[env] Missing variable CALENDAR_GIT inside your env'
+        exit 1;
+    fi;
+}
+
+function getRemote {
+    cd /tmp;
+    rm -rf "/tmp/$1" || echo true;
+    log "[clone] from $GIT_SUBPROJECT_URL $(pwd)/$1"
+    git clone --depth 1 "$GIT_SUBPROJECT_URL" "$1";
 }
 
 function loadProject {
@@ -126,18 +136,24 @@ function addSubProject {
 
 if [[ "$*" == *--deploy-subproject=settings* ]]; then
     log "[build] settings"
+    checkEnv 'pm-settings'
+    GIT_SUBPROJECT_URL="$PM_SETTINGS_GIT";
     loadProject "--remote-pm-settings" "${SETTINGS_APP:-proton-mail-settings}";
     addSubProject "$SETTINGS_DIST_DIR";
 fi
 
 if [[ "$*" == *--deploy-subproject=contacts* ]]; then
     log "[build] contacts"
+    checkEnv 'contacts'
+    GIT_SUBPROJECT_URL="$CONTACTS_GIT";
     loadProject "--remote-contacts" "${CONTACTS_APP:-proton-contacts}";
     addSubProject "$CONTACTS_DIST_DIR";
 fi
 
 if [[ "$*" == *--deploy-subproject=calendar* ]]; then
     log "[build] calendar"
+    checkEnv 'calendar'
+    GIT_SUBPROJECT_URL="$CALENDAR_GIT";
     loadProject "--remote-calendar" "${CALENDAR_APP:-proton-calendar}";
     addSubProject "$CALENDAR_DIST_DIR";
 fi
