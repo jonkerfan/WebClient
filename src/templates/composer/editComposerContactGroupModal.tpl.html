@@ -23,10 +23,10 @@
         <div class="pm-modalContentInner">
             <ul class="unstyled">
                 <li
-                    class="flex mt1"
+                    class="flex flex-item-fluid mt1"
                     ng-repeat="email in ctrl.group track by email.ID">
 
-                    <label class="inline-flex">
+                    <label class="inline-flex flex-item-fluid">
                         <custom-checkbox data-custom-ng-model="email.isSelected"></custom-checkbox>
                         <span class="mr0-5">{{ ::email | contact }}</span>
                     </label>
