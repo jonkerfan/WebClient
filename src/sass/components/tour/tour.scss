@@ -34,7 +34,8 @@
 .pm-wizard-close {
 	position: absolute;
 	right: .5em;
-	top: .5em;
+    top: .5em;
+    color: var(--color-main-area, $pm-global-grey);
 }
 .pm-wizard-badge {
     font-size: 2rem;
@@ -54,7 +55,7 @@
 .pm-wizard-pagination-bullet {
 	height: 12px;
 	width: 12px;
-	background-color: $pm-global-border;
+	background-color: var(--bordercolor-input, $pm-global-border);
 }
 
 [class^="step-"] {
