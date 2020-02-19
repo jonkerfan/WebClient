@@ -401,7 +401,8 @@
                     display: block;
                 }
                 blockquote.protonmail_quote {
-                    position: relative
+                    position: relative;
+                    color: $pm-global-grey;
                 }
             }
         }
