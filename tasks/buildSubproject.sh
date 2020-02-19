@@ -123,6 +123,8 @@ function addSubProject {
     # If you deploy from local, we keep your cache
     if [ ! -d "./node_modules/react" ]; then
         npm --no-color i --no-audit --no-package-lock --silent;
+        # npm hook doesn't work out of the box on the CI, don't want to use --unsafe-perm on a dev computer
+        npm run postinstall;
     fi
 
     log "[build.project] npm run bundle -- $MAIN_ARGS --verbose"
