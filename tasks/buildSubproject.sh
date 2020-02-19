@@ -124,7 +124,8 @@ function addSubProject {
     if [ ! -d "./node_modules/react" ]; then
         npm --no-color i --no-audit --no-package-lock --silent;
         # npm hook doesn't work out of the box on the CI, don't want to use --unsafe-perm on a dev computer
-        npm run postinstall;
+        # calendar master doesn't have the hook yet
+        npm run postinstall 2> /dev/null || true
     fi
 
     log "[build.project] npm run bundle -- $MAIN_ARGS --verbose"
