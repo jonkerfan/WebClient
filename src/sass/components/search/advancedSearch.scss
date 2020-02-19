@@ -37,6 +37,10 @@ body .is-today .pika-button {
 body .pika-button:hover {
 	background: rgba(0,0,0,.25);
 }
+body.appConfigBody-darkmode .pika-button:hover {
+    background: var(--bgcolor-input, rgba(0,0,0,.25));
+    color: $white;
+}
 
 body.appConfigBody-is-mobile {
 	#advancedSearchModal {

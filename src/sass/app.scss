@@ -46,7 +46,7 @@ $primary: $pm-primary;
 
 @import "~design-system/_sass/design-system-website/global-structure";
 
-@import "~pikaday/css/pikaday.css";
+@import "components/pikaday/pikaday";
 @import "~dropzone/dist/dropzone.css";
 @import "~awesomplete/awesomplete.css";
 
