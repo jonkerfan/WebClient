@@ -143,14 +143,18 @@ const customTheme = (AppModel, dispatchers, mailSettingsModel, organizationModel
                summary {
                  background-image: url(/settings/assets/sprite-for-css-only.c7c581e3.svg#css-caret-white); }
 
-               .fill-global-grey,
-               .fill-black {
-                 fill: #fff; }
+               // quick and dirty
+                .fill-global-grey:not(.fill-pm-blue),
+                .fill-global-grey:not(.fill-primary),
+                .fill-black:not(.fill-pm-blue),
+                .fill-black:not(.fill-primary) { fill: #fff; } // dirty, I know
 
                .appConfigBody-darkmode .display-on-darkmode {
                   display: flex; }
                 .appConfigBody-darkmode .hide-on-darkmode {
                     display: none; }
+
+               .fill-currentColor { fill: currentColor; } // to avoid some issues
 
                :root {
                  --bgcolor-item-column-list: #262a33;
