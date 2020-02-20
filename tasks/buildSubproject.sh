@@ -120,6 +120,11 @@ function loadProject {
 # If
 function addSubProject {
 
+    # Seems like we need to force the load of the env inside a subproject
+    # Else proton-i18n will have a cache of the env... from the OLD env even if when you run it it loads the env from the current repository,
+    # magic
+    source .env
+
     # If you deploy from local, we keep your cache
     if [ ! -d "./node_modules/react" ]; then
         npm --no-color i --no-audit --no-package-lock --silent;
