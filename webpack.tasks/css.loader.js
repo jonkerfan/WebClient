@@ -8,6 +8,43 @@ if (env.isDistRelease()) {
     postcssPlugins.push(require('autoprefixer')(env.AUTOPREFIXER_CONFIG));
 }
 
+const DESIGN_SYSTEM_THEME = /.*theme\.scss$/;
+
+const getSassLoaders = () => {
+    return [
+        'css-loader',
+        postcssPlugins.length
+            ? {
+                  loader: 'postcss-loader',
+                  options: {
+                      ident: 'postcss',
+                      plugins: postcssPlugins
+                  }
+              }
+            : undefined,
+        {
+            loader: 'string-replace-loader',
+            query: {
+                multiple: [
+                    {
+                        search: '#hostURL#',
+                        replace: env.getHostURL()
+                    },
+                    {
+                        search: '#hostURL2#',
+                        replace: env.getHostURL(true)
+                    }
+                ]
+            }
+        },
+        {
+            loader: 'fast-sass-loader'
+        }
+    ].filter(Boolean);
+};
+
+const sassLoaders = getSassLoaders();
+
 module.exports = [
     {
         test: /\.css$/,
@@ -25,41 +62,13 @@ module.exports = [
     },
     {
         test: /\.scss$/,
-        exclude: /node_modules/,
-        use: [
-            'css-hot-loader',
-            MiniCssExtractPlugin.loader,
-            {
-                loader: 'string-replace-loader',
-                query: {
-                    multiple: [
-                        {
-                            search: '#hostURL#',
-                            replace: env.getHostURL()
-                        },
-                        {
-                            search: '#hostURL2#',
-                            replace: env.getHostURL(true)
-                        }
-                    ]
-                }
-            },
-            {
-                loader: 'css-loader'
-            },
-            {
-                loader: 'postcss-loader',
-                options: {
-                    ident: 'postcss',
-                    plugins: postcssPlugins
-                }
-            },
-            {
-                loader: 'fast-sass-loader',
-                options: {
-                    // includePaths: [path.resolve('./src/sass')]
-                }
-            }
-        ]
+        exclude: DESIGN_SYSTEM_THEME,
+        use: ['css-hot-loader', MiniCssExtractPlugin.loader, ...sassLoaders],
+        sideEffects: true
+    },
+    {
+        test: DESIGN_SYSTEM_THEME,
+        // Prevent loading the theme in <style>, we want to load it as a raw string
+        use: [...sassLoaders]
     }
 ];

@@ -1,3 +1,6 @@
+// Better to import this directly instead of a dynamic import to prevent flash of light content. It's small anyway.
+import darkThemeCss from '../../../sass/themes/_pm-dark-theme.scss';
+
 /* @ngInject */
 const customTheme = (AppModel, dispatchers, mailSettingsModel, organizationModel) => ({
     replace: true,
@@ -11,10 +14,8 @@ const customTheme = (AppModel, dispatchers, mailSettingsModel, organizationModel
                 const { Theme: organizationTheme } = organizationModel.get() || {};
                 const userTheme = mailSettingsModel.get('Theme') || '';
                 if (userTheme === '/* dark-mode */') {
-                    import('../../../sass/themes/_pm-dark-theme.scss').then(({ default: darkMode }) => {
-                        el[0].textContent = organizationTheme || darkMode || '';
-                        AppModel.set('darkmode', true);
-                    });
+                    el[0].textContent = organizationTheme || darkThemeCss || '';
+                    AppModel.set('darkmode', true);
                 } else {
                     AppModel.set('darkmode', false);
                     el[0].textContent = organizationTheme || userTheme || '';
