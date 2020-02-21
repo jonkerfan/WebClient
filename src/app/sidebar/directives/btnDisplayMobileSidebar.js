@@ -11,7 +11,7 @@ function btnDisplayMobileSidebar(AppModel, gettextCatalog) {
 
     return {
         replace: true,
-        template: `<button class="btnDisplayMobileSidebar-container flex"><icon data-name="burger" data-fill="white" data-size="25" class="mauto"></icon><span class="sr-only">${I18N.displayMenu}</span></button>`,
+        template: `<button class="btnDisplayMobileSidebar-container flex"><icon data-name="burger"  data-size="25" class="mauto"></icon><span class="sr-only">${I18N.displayMenu}</span></button>`,
         compile(element, { type = 'show' }) {
             element[0].querySelector('icon').setAttribute('data-name', CLASS_ICONS[type]);
 
