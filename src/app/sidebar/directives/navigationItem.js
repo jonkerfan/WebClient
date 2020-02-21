@@ -25,8 +25,8 @@ function navigationItem(
                     <icon data-name="${icon}" class="mr0-5 flex-item-centered-vert navigation__icon"></icon>
                     <span class="navigationItem-title flex-item-fluid">${label}</span>
                     <span class="navigationItem-aside flex flex-items-center">
-                        <button class="navigation__refresh navigationItem-btn-refresh">
-                            <icon data-name="reload" fill="global-light" class="mr0-5"></icon>
+                        <button class="navigation__refresh color-global-light navigationItem-btn-refresh">
+                            <icon data-name="reload" class="mr0-5"></icon>
                             <span class="sr-only" translate-context="Action" translate>refresh</span>
                         </button>
                         <span class="navigationItem-counter navigation__counterItem flex-item-noshrink rounded mr0-5"></span>
