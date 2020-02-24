@@ -22,7 +22,7 @@ function navigationItem(
             opt
         )}" title="${label}" data-label="${label}" data-state="${key}" class="navigation__link navigationItem-container w100" ${dropzone} internal-link>
                 <span class="flex flex-nowrap">
-                    <icon data-name="${icon}" class="mr0-5 flex-item-centered-vert navigation__icon"></icon>
+                    <icon data-name="${icon}" fill="currentColor" class="mr0-5 flex-item-centered-vert navigation__icon"></icon>
                     <span class="navigationItem-title flex-item-fluid">${label}</span>
                     <span class="navigationItem-aside flex flex-items-center">
                         <button class="navigation__refresh color-global-light navigationItem-btn-refresh">
