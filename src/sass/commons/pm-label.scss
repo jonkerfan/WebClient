@@ -12,6 +12,7 @@
         transition: max-width .25s ease;
         max-height: 100%; /* Prevent wrong height on Edge ~ row mode */
         max-width: 15em;
+        flex-wrap: nowrap;
     }
     [class*="-label"]:last-of-type {margin-right: 0}
 
