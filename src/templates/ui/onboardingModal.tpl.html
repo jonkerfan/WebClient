@@ -14,72 +14,77 @@
             <span
                 ng-if="ctrl.step === 0"
                 translate-context="Title"
-                translate>Welcome again to ProtonMail 4.0</span>
+                translate>Welcome to ProtonMail 4.0</span>
             <span
                 ng-if="ctrl.step === 1"
                 translate-context="Title"
-                translate>Introducing ProtonCalendar</span>
+                translate>Meet the new app bar</span>
             <span
                 ng-if="ctrl.step === 2"
                 translate-context="Title"
+                translate>Introducing ProtonCalendar</span>
+            <span
+                ng-if="ctrl.step === 3"
+                translate-context="Title"
+                translate>Introducing Dark Mode</span>
+            <span
+                ng-if="ctrl.step === 4"
+                translate-context="Title"
                 translate>Have questions or feedback?</span>
-
         </h1>
     </header>
 
-
     <div class="pm-modalContent">
         <div class="pm-modalContentInner" ng-if="ctrl.step === 0">
-
             <p
                 class="block-info-standard"
                 translate-context="Info"
                 translate>ProtonMail 4.0 is a brand new inbox which contains many new features while continuing to improve the privacy and security that Proton is known for.</p>
-
-
-            <h4 translate-context="Title onboard modal" translate>Meet the new app menu</h4>
-
-            <p
-                class="block-info-standard"
-                translate-context="Info"
-                translate>From now on, existing Proton services including ProtonCalendar (available to paid users only) are accessible from the sidebar.</p>
-
-            <div class="">
+            <div>
                 <img src="/assets/v4-onboad/protonmail.png" class="w100">
             </div>
+            <p
+                class="block-info-standard"
+                translate-context="Info"
+                translate>We would like to walk you through important new features and user experience improvements.</p>
         </div>
 
-       <div class="pm-modalContentInner" ng-if="ctrl.step === 1">
+        <div class="pm-modalContentInner" ng-if="ctrl.step === 1">
+            <p class="block-info-standard" translate-context="Info" translate>The app bar allows you to quickly switch between Proton apps while never having to log back in.</p>
+            <div>
+                <img src="/assets/v4-onboad/appbar.png" class="w100">
+            </div>
+            <p class="block-info-standard" translate-context="Info" translate>ProtonMail, ProtonContacts, ProtonCalendar, and all future Proton services (e.g. ProtonDrive) are just one click away.</p>
+        </div>
 
+       <div class="pm-modalContentInner" ng-if="ctrl.step === 2">
             <p
                 class="block-info-standard"
                 translate-context="Info"
-                translate>ProtonCalendar is a new encrypted calendar to go with ProtonMail. Now you can create events which are encrypted in a way that even we cannot see the details of your events.</p>
-
-           <h4 translate-context="Title onboard modal" translate>Give it a try today</h4>
-
-            <p
-                class="block-info-standard"
-                translate-context="Info"
-                translate>The wait is over! Start creating your encrypted events today. We will keep expanding ProtonCalendar and add features regularly.</p>
-
-            <div class="">
+                translate>ProtonCalendar is a new encrypted calendar to go with ProtonMail and it is now available in Beta.</p>
+            <div>
                 <img src="/assets/v4-onboad/calendar.png" class="w100">
             </div>
+            <p class="block-info-standard" translate-context="Info" translate>Now you can create events which are encrypted in a way that even we cannot see the details of your events.</p>
         </div>
 
-        <div class="pm-modalContentInner" ng-if="ctrl.step === 2">
-
-            <h4 translate-context="Title onboard modal" translate>Can’t find something? Want to say hello?</h4>
-
+        <div class="pm-modalContentInner" ng-if="ctrl.step === 3">
             <p
                 class="block-info-standard"
                 translate-context="Info"
-                translate>Get help or give feedback direct from within ProtonMail v4, right from the top bar. Report bug will send your comments directly to our team.</p>
+                translate>Our dark theme is finally here and you can use it regardless of your device’s configuration.</p>
+            <div>
+                <img src="/assets/v4-onboad/darkmode.png" alt="" class="w100">
+            </div>
+            <p class="block-info-standard" translate-context="Info" translate>Switch to the dark theme now or navigate at any point in time to Settings > Appearance > Themes</p>
+        </div>
 
-            <div class="">
+        <div class="pm-modalContentInner" ng-if="ctrl.step === 4">
+            <p class="block-info-standard" translate-context="Info" translate>Can’t find something? Want to say hello? We are here to listen to your feedback.</p>
+            <div>
                 <img src="/assets/v4-onboad/question.png" alt="" class="w100">
             </div>
+            <p class="block-info-standard" translate-context="Info" translate>Reach out to us from within ProtonMail v4, right from the top bar. Reporting a bug will send your comments directly to our team.</p>
         </div>
 
 
@@ -90,7 +95,7 @@
                 ng-click="ctrl.cancel()"
                 ng-if="ctrl.step === 0"
                 translate-context="Action"
-                translate>Skip Tutorial</button>
+                translate>Not now</button>
 
             <button
                 class="pm-button"
@@ -103,14 +108,14 @@
             <button
                 class="pm-button-blue disabled-if-network-activity"
                 ng-click="ctrl.next()"
-                ng-if="ctrl.step !== 2"
+                ng-if="ctrl.step !== 4"
                 translate-context="Action"
                 translate>Next</button>
 
             <button
                 class="pm-button-blue disabled-if-network-activity"
                 ng-click="ctrl.cancel()"
-                ng-if="ctrl.step === 2"
+                ng-if="ctrl.step === 4"
                 translate-context="Action"
                 translate>Start exploring</button>
         </footer>
